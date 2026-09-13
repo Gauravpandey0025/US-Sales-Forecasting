@@ -1,0 +1,162 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Market Forecast design system — grocery receipt / paper-slip aesthetic.
+ * Paper cream surfaces, deep-green ink, tomato accent, hard offset shadows.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-kraft: var(--kraft);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --shadow-slip: 6px 6px 0 var(--kraft);
+  --shadow-sticker: 4px 4px 0 var(--tomato-deep);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.978 0.012 92);
+  --foreground: oklch(0.26 0.03 145);
+  --paper: oklch(0.992 0.008 95);
+  --card: oklch(0.992 0.008 95);
+  --card-foreground: oklch(0.26 0.03 145);
+  --popover: oklch(0.992 0.008 95);
+  --popover-foreground: oklch(0.26 0.03 145);
+  --primary: oklch(0.6 0.2 27);
+  --primary-foreground: oklch(0.99 0.01 95);
+  --tomato-deep: oklch(0.45 0.16 28);
+  --secondary: oklch(0.42 0.09 150);
+  --secondary-foreground: oklch(0.99 0.01 95);
+  --muted: oklch(0.945 0.015 92);
+  --muted-foreground: oklch(0.5 0.02 140);
+  --accent: oklch(0.86 0.07 120);
+  --accent-foreground: oklch(0.26 0.03 145);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.99 0.01 95);
+  --border: oklch(0.26 0.03 145);
+  --input: oklch(0.26 0.03 145);
+  --ring: oklch(0.6 0.2 27);
+  --kraft: oklch(0.83 0.06 80);
+  --ink: oklch(0.26 0.03 145);
+  --ink-soft: oklch(0.5 0.02 140);
+  --chart-1: oklch(0.42 0.09 150);
+  --chart-2: oklch(0.6 0.2 27);
+  --chart-3: oklch(0.68 0.13 80);
+  --chart-4: oklch(0.55 0.09 220);
+  --chart-5: oklch(0.6 0.13 300);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 27px,
+        oklch(0.26 0.03 145 / 0.04) 27px,
+        oklch(0.26 0.03 145 / 0.04) 28px
+      );
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+@utility slip {
+  background-color: var(--paper);
+  border: 1.5px solid var(--ink);
+  box-shadow: var(--shadow-slip);
+}
+
+@utility field-input {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  width: 100%;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  padding: 0.5rem 0.6rem;
+  border-radius: 2px;
+  outline: none;
+}
+
+@utility field-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.3rem;
+}
+
+@utility sticker-btn {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+  padding: 0.85rem 1.25rem;
+  border-radius: 3px;
+  box-shadow: var(--shadow-sticker);
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease;
+}
+
+@utility receipt-edge {
+  --mask: radial-gradient(circle at 6px 100%, transparent 0 6px, black 6px);
+  mask-image: var(--mask);
+  mask-size: 12px 100%;
+  mask-repeat: repeat-x;
+}
